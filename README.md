@@ -25,3 +25,10 @@ Unix/Linux上常见的Shell脚本解释器有bash、sh、csh、ksh等，习惯�
 
 [开始阅读：Shell脚本学习--入门](chapter1.md)
 
+
+## 打赏作者
+
+欢迎微信扫码打赏我，感谢支持！
+
+![打赏作者](wechat.png)
+
