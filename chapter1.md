@@ -332,11 +332,11 @@ echo -e "a is $a \n"
 
 运行结果：
 ```
-Value of a is 10
+Value of a is 11
 ```
 这里 `-e` 表示对转义字符进行替换。如果不使用 `-e` 选项，将会原样输出：
 ```
-Value of a is 10\n
+Value of a is 11\n
 ```
 
 可以使用 echo 命令的 `-E` 选项禁止转义，默认也是不转义的；使用 `-n` 选项可以禁止插入换行符。
