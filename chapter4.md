@@ -200,6 +200,7 @@ shanghai
 
 citys=`cat city.txt`
 for city in $citys
+
    echo $city
 done
 ```
