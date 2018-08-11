@@ -132,6 +132,39 @@ File name is index.html
 这里用到了特殊变量`${1}`,指的是获取命令行的第一个参数。
 
 
+下面结合`getopts`命令介绍下一个经典的例子：从命令行读取参数。
+
+run.sh  
+``` bash
+#!/bin/sh
+
+usage()
+{
+    echo "Usage: $0 -s [start|stop|reload|restart] -e [online|test]"
+    exit 1
+}
+
+if [ -z $1 ]; then
+    usage
+fi
+
+while getopts 's:e:h' OPT; do
+    case $OPT in
+        s) cmd="$OPTARG";;
+        e) env="$OPTARG";;
+        h) usage;;
+        ?) usage;;
+    esac
+done
+
+echo $cmd
+echo $env
+```
+当我们直接运行`run.sh`的时候，会调用`usage`显示帮助；如果输入正确的参数，则会进入正确的流程。运行示例：
+```
+sh run.sh -s start -e test
+```
+
 ## for循环
 shell的for循环与c、php等语言不同，同Python很类似。下面是语法格式：
 ```

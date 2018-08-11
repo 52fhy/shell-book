@@ -192,3 +192,29 @@ echo $name
 yjc
 ```
 
+## 获取当前正在执行脚本的绝对路径
+
+正确的命令是：
+``` bash
+basepath=$(cd `dirname $0`; pwd)
+```
+
+直接使用`pwd`或者`dirname $0`是不对的。
+
+## 按特定字符串截取字符串
+
+示例：截取`/www/html/php/myapp/`里的myapp。
+
+方案：
+```
+str=/www/html/php/myapp/
+b=($(echo $str|sed 's#/# #g'))
+b_len=`expr ${#b[*]} - 1`
+app_name=${b[$b_len]}
+echo $app_name
+```
+这里利用`sed`将字符串按指定字符截成数组，然后取最后一个。  
+
+计算数组长度：`${#arr[*]}`  
+计算则需要使用`expr`命令
+
