@@ -218,3 +218,124 @@ echo $app_name
 计算数组长度：`${#arr[*]}`  
 计算则需要使用`expr`命令
 
+## awk
+
+### awk简介
+
+
+awk是一个强大的文本分析工具，相对于grep的查找，sed的编辑，awk在其对数据分析并生成报告时，显得尤为强大。简单来说awk就是把文件(或其他方式的输入流, 如重定向输入)逐行的读入（看作一个记录集）, 把每一行看作一条记录，以空格(或\t,或用户自己指定的分隔符)为默认分隔符将每行切片（类似字段），切开的部分再进行各种分析处理。
+
+awk有3个不同版本: awk、nawk和gawk，未作特别说明，一般指gawk，gawk 是 AWK 的 GNU 版本。
+
+Awk基本语法:　
+
+``` shell
+awk 'pattern1 {command1;command 2…; command 3}  pattern2 { command …}'
+```
+
+pattern表示用来过滤记录的模式,可是是正则表达式，关系运算表达式，也可以什么也没有(表示选中所有记录)。
+
+每个pattern选中的行记录会被花括号括起来的命令command操作一遍, command之间用`;`分割。 花括号里面可以什么也没有, 则默认为print输出整行记录。 Comamnd可以是输出， 可以是算术运算，逻辑运算，循环控制等等。
+
+### 示例
+
+s.txt
+```
+zhangsan 1977 male computer 83
+lisi 1989 male math 99
+wanglijiang 1990 female chinese 78
+xuliang 1977 male economic 89
+xuxin 1986 female english 99
+wangxuebing 1978 male math 89
+lichang 1989 male math 99
+wanglijiang 1990 female chinese 78
+zhangsansan 1977 male computer 83 
+langxuebing 1978 male math 89
+lisibao 1989 male math 99
+xiaobao 1990 female chinese 78
+```
+一行中的5个字段分别表示`姓名, 出生年, 性别,科目,分数`, 是一个很传统很典型的报表文件。
+
+现在演示awk是如何查找的：
+
+1)直接输出1990年出生的同学:
+``` shell
+$ awk '/1990/' s.txt
+
+wanglijiang 1990 female chinese 78
+wanglijiang 1990 female chinese 78
+xiaobao 1990 female chinese 78
+ 
+```
+或者：
+```
+$ awk '/1990/{print $0}' s.txt
+```
+awk默认把输入的内容以空格拆分出每列。`$0`表示匹配所有列，`print $0`将输出所有列，每列分隔符是空格。
+
+2）对chinese的课程的行输出"语文"：
+``` shell
+$ awk '/chinese/{print "语文"}' s.txt
+
+语文
+语文
+语文
+
+```
+
+3）记录的头部和结尾加上一段说明：
+``` shell
+$ awk 'BEGIN{print "Result of the quiz:\n"}{print $0}END{print "------"}' s.txt
+Result of the quiz:
+
+zhangsan 1977 male computer 83
+lisi 1989 male math 99
+wanglijiang 1990 female chinese 78
+xuliang 1977 male economic 89
+xuxin 1986 female english 99
+wangxuebing 1978 male math 89
+lichang 1989 male math 99
+wanglijiang 1990 female chinese 78
+zhangsansan 1977 male computer 83
+langxuebing 1978 male math 89
+lisibao 1989 male math 99
+xiaobao 1990 female chinese 78
+------
+
+```
+
+AWK工作流程：**逐行扫描文件，从第一行到最后一行，寻找匹配特定模式的行，并在这些行上进行用户想要到的操作**。
+
+BEGIN只会在最开始执行；END只会在扫描所有行数之后执行。BEGIN和END之间的花括号的内容每扫描一行都会执行。
+
+4)查找女生的成绩且只输出姓名、学科、成绩：
+``` shell
+$ awk '$3=="female"{print $1,$4,$5}' s.txt
+wanglijiang chinese 78
+xuxin english 99
+wanglijiang chinese 78
+xiaobao chinese 78
+
+```
+`$1`表示第1列，`$n`类推。这里条件是表达式，而不是正则。print里`,`表示空格分隔符。
+
+5)找出1990年出生的学生姓名，并要求匹配正则:
+``` shell
+$ awk '$2~/1990/{print $1}' s.txt
+wanglijiang
+wanglijiang
+xiaobao
+
+```
+
+这里`~`表示匹配正则表达式。`!~`表示不匹配正则表达式。
+
+如果需要多选，则改成：
+``` shell
+$ awk '$2~/(1990|1991)/{print $1}' s.txt
+```
+
+awk更多内容详见：https://www.cnblogs.com/52fhy/p/5836429.html#autoid-3-4-0
+
+（完结）
+
