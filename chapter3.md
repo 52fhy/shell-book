@@ -73,7 +73,7 @@ i love you
 str="i love you"
 
 echo `expr index "$str" l`
-echo `expr index "$str" love` #最后一个参数是字符，字符串只保留首字母
+echo `expr index "$str" you` #最后一个参数是字符，会对后面字符串每一个单独查找，返回最靠前的index
 echo `expr index "$str" o`
 echo `expr length "$str"` #字符串长度
 echo `expr substr "$str" 1 6` #从字符串中位置1开始截取6个字符。索引是从0开始的。
@@ -82,13 +82,13 @@ echo `expr substr "$str" 1 6` #从字符串中位置1开始截取6个字符。�
 输出:
 ```
 3
-3
+4
 4
 10
 i love
 ```
 
-注意字符串变量需要加双引号。
+注意字符串变量需要加双引号。第2个例子里`you`虽然`y`的index是8,但是`o`在前面已经出现过,index是4，最终取所有字符里最靠前的index。
 
 *拓展：`expr`更多关于字符串用法：
 ```
