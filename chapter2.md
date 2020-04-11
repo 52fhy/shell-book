@@ -12,7 +12,7 @@ Bash 支持很多运算符，包括算数运算符、关系运算符、布尔运
 原生bash不支持简单的数学运算，但是可以通过其他命令来实现，例如 awk 和 expr，expr 最常用。
 
 `expr` 是一款表达式计算工具，使用它能完成表达式的求值操作。
-```
+```bash
 # 命令行直接计算
 expr 2 + 2   #4
 expr 3 - 2   #1
@@ -34,7 +34,7 @@ echo "a + b : $val"
 
 
 **算术运算符列表**
-```
+```bash
 运算符	说明	    举例
 +	    加法	`expr $a + $b` 结果为 30。
 -   	减法	`expr $a - $b` 结果为 10。
@@ -49,7 +49,7 @@ echo "a + b : $val"
 ### 关系运算符
 关系运算符只支持数字，不支持字符串，除非字符串的值是数字。
 
-```
+```bash
 #!/bin/sh
 a=10
 b=20
@@ -62,7 +62,7 @@ fi
 ```
 
 缩成一行可以这样：
-```
+```bash
 a=10;b=20;if [ $a -eq $b ];then echo "$a -eq $b : a is equal to b"; else echo "$a -eq $b: a is not equal to b"; fi
 ```
 这里缩写，主要是为了让大家注意：
@@ -70,7 +70,7 @@ a=10;b=20;if [ $a -eq $b ];then echo "$a -eq $b : a is equal to b"; else echo "$
 * if后面直到then前面的分号结束，都是有空格的: `if [ $a -eq $b ]`
 
 **关系运算符列表**
-```
+```bash
 运算符	说明
 -eq	检测两个数是否相等，相等返回 true。同算数运算符`==`
 -ne	检测两个数是否相等，不相等返回 true
@@ -83,13 +83,13 @@ a=10;b=20;if [ $a -eq $b ];then echo "$a -eq $b : a is equal to b"; else echo "$
 
 ## 布尔运算符
 **布尔运算符列表**
-```
+```bash
 运算符	说明
 !	非运算，表达式为 true 则返回 false，否则返回 true。
 -o	或运算(or)，有一个表达式为 true 则返回 true。
 -a	与运算(and)，两个表达式都为 true 才返回 true。
 ```
-```
+```bash
 if [ 3 -eq 3 -a 3 -lt 5 ]
 then
     echo 'ok'
@@ -99,7 +99,7 @@ fi;
 ## 字符串运算符
 
 **字符串运算符列表**
-```
+```bash
 运算符	说明	举例
 =	检测两个字符串是否相等，相等返回 true。	[ $a = $b ] 返回 false。
 !=	检测两个字符串是否相等，不相等返回 true。	[ $a != $b ] 返回 true。
@@ -112,7 +112,7 @@ str	检测字符串是否为空，不为空返回 true。	[ $a ] 返回 true。
 
 文件测试运算符用于检测 Unix 文件的各种属性。
 
-```
+```bash
 #!/bin/sh
 file="/tmp/test.sh"
 
@@ -125,7 +125,7 @@ fi
 ```
 
 文件测试运算符列表
-```
+```bash
 操作符	说明	举例
 
 -b file	检测文件是否是块设备文件，如果是，则返回 true。	[ -b $file ] 返回 false。
