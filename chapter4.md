@@ -6,7 +6,7 @@
 
 ## 条件判断：if语句
 语法格式：
-```
+```bash
 if [ expression ]
 then
    Statement(s) to be executed if expression is true
@@ -16,14 +16,14 @@ fi
 注意：`expression` 和方括号([ ])之间必须有空格，否则会有语法错误。
 
 if 语句通过关系运算符判断表达式的真假来决定执行哪个分支。Shell 有三种 if ... else 语句：
-```
+```bash
 if ... fi 语句
 if ... else ... fi 语句
 if ... elif ... else ... fi 语句
 ```
 
 示例：
-```
+```bash
 #!/bin/bash/
 
 a=10
@@ -40,12 +40,12 @@ fi
 ```
 
 `if ... else` 语句也可以写成一行，以命令的方式来运行:
-```
+```bash
 a=10;b=20;if [ $a == $b ];then echo "a is equal to b";else echo "a is not equal to b";fi;
 ```
 
 `if ... else` 语句也经常与 `test` 命令结合使用，作用与上面一样：
-```
+```bash
 #!/bin/bash/
 
 a=10
@@ -62,7 +62,7 @@ fi
 `case ... esac` 与其他语言中的 `switch ... case` 语句类似，是一种多分枝选择结构。
 
 示例：
-```
+```bash
 #!/bin/bash/
 
 grade="B"
@@ -104,7 +104,7 @@ int main(){
 取值将检测匹配的每一个模式。一旦模式匹配，则执行完匹配模式相应命令后不再继续其他模式。如果无一匹配模式，使用星号 `*` 捕获该值，再执行后面的命令。
 
 再举一个例子：
-```
+```bash
 #!/bin/bash
 option="${1}"
 case ${option} in
@@ -121,7 +121,7 @@ case ${option} in
 esac
 ```
 运行结果：
-```
+```bash
 $./test.sh
 test.sh: usage: [ -f filename ] | [ -d directory ]
 
@@ -161,13 +161,13 @@ echo $cmd
 echo $env
 ```
 当我们直接运行`run.sh`的时候，会调用`usage`显示帮助；如果输入正确的参数，则会进入正确的流程。运行示例：
-```
+```bash
 sh run.sh -s start -e test
 ```
 
 ## for循环
 shell的for循环与c、php等语言不同，同Python很类似。下面是语法格式：
-```
+```bash
 for 变量 in 列表
 do
     command1
@@ -178,7 +178,7 @@ done
 ```
 
 示例：
-```
+```bash
 #!/bin/bash/
 
 for value in 1 2 3 4 5
@@ -188,7 +188,7 @@ done
 ```
 
 输出：
-```
+```bash
 The value is 1
 The value is 2
 The value is 3
@@ -197,7 +197,7 @@ The value is 5
 ```
 
 顺序输出字符串中的字符：
-```
+```bash
 for str in 'This is a string'
 do
     echo $str
@@ -210,7 +210,7 @@ This is a string
 ```
 
 遍历目录下的文件：
-```
+```bash
 #!/bin/bash
 for FILE in *
 do
@@ -228,7 +228,7 @@ tianjin
 shanghai
 ```
 
-```
+```bash
 #!/bin/bash
 
 citys=`cat city.txt`
@@ -251,7 +251,7 @@ shanghai
 只要while后面的条件满足，就一直执行do里面的代码块。
 
 其格式为：
-```
+```bash
 while command
 do
    Statement(s) to be executed if command is true
@@ -260,7 +260,7 @@ done
 命令执行完毕，控制返回循环顶部，从头开始直至测试条件为假。
 
 示例：
-```
+```bash
 #!/bin/bash
 
 c=0;
@@ -285,7 +285,7 @@ Value c is 2
 until 循环执行一系列命令直至条件为 true 时停止。until 循环与 while 循环在处理方式上刚好相反。一般while循环优于until循环，但在某些时候，也只是极少数情况下，until 循环更加有用。
 
 将上面while循环的例子改改，就能达到一样的效果：
-```
+```bash
 #!/bin/bash
 
 c=0;
@@ -312,7 +312,7 @@ Value c is 2
 
 break命令允许跳出所有循环（终止执行后面的所有循环）。
 
-```
+```bash
 #!/bin/bash
 
 i=0
@@ -335,7 +335,7 @@ done
 ```
 
 在嵌套循环中，break 命令后面还可以跟一个整数，表示跳出第几层循环。例如：
-```
+```bash
 break n
 ```
 表示跳出第 n 层循环。
@@ -344,7 +344,7 @@ break n
 
 continue命令与break命令类似，只有一点差别，它不会跳出所有循环，仅仅跳出当前循环。
 
-```
+```bash
 #!/bin/bash
 
 i=0

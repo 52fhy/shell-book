@@ -16,7 +16,7 @@
 
 ### 拼接字符串
 
-```
+```bash
 #!/bin/bash
 
 str1='i'
@@ -36,7 +36,7 @@ i,love,you
 ```
 
 ### 获取字符串长度
-```
+```bash
 #!/bin/bash/
 
 str='i love you'
@@ -47,7 +47,7 @@ echo ${#str}
 ```
 
 ### 截取字符串
-```
+```bash
 #!/bin/bash/
 
 str='i love you'
@@ -67,7 +67,7 @@ i love you
 
 ### 查找字符串
 
-```
+```bash
 #!/bin/bash/
 
 str="i love you"
@@ -91,7 +91,7 @@ i love
 注意字符串变量需要加双引号。第2个例子里`you`虽然`y`的index是8,但是`o`在前面已经出现过,index是4，最终取所有字符里最靠前的index。
 
 *拓展：`expr`更多关于字符串用法：
-```
+```bash
 STRING : REGEXP   anchored pattern match of REGEXP in STRING
 
 match STRING REGEXP        same as STRING : REGEXP
@@ -107,16 +107,16 @@ length STRING              #字符串长度
 bash支持一维数组（不支持多维数组），并且没有限定数组的大小。类似与C语言，数组元素的下标由0开始编号。获取数组中的元素要利用下标，下标可以是整数或算术表达式，其值应大于或等于0。
 
 在Shell中，用括号来表示数组，数组元素用`空格`符号分割开。定义数组的一般形式为：
-```
+```bash
 array_name=(value1 value2 ... valuen)
 ```
 
 例如：
-```
+```bash
 array_name=(value0 value1 value2 value3)
 ```
 或者
-```
+```bash
 array_name=(
     value0
     value1
@@ -126,7 +126,7 @@ array_name=(
 ```
 
 还可以单独定义数组的各个分量：
-```
+```bash
 array_name[0]=value0
 array_name[1]=value1
 array_name[2]=value2
@@ -134,7 +134,7 @@ array_name[2]=value2
 可以不使用连续的下标，而且下标的范围没有限制。
 
 下面来读取数组：
-```
+```bash
 echo ${array_name[2]} #读取下标为2的元素
 echo ${array_name[*]} #读取所有元素
 echo ${array_name[@]} #读取所有元素
@@ -146,7 +146,7 @@ echo ${#array_name[1]} #获取数组中单个元素的长度
 ```
 
 输出：
-```
+```bash
 value2
 value0 value1 value2 value3
 value0 value1 value2 value3
@@ -160,7 +160,7 @@ value0 value1 value2 value3
 对比shell里字符串和数组，我们发现：
 
 字符串
-```
+```bash
 str="hello"
 ${#str} # 读取字符串长度
 echo ${str} # 读取字符串全部
@@ -168,7 +168,7 @@ echo ${str:1} # 截取字符串
 ```
 
 数组：
-```
+```bash
 arr=(a1 a2 a3)
 echo ${#arr[*]} # 读取数组长度
 echo ${#arr[1]} # 读取数组某个元素长度

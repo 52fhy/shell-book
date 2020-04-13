@@ -12,19 +12,19 @@ Unix/Linux上常见的Shell脚本解释器有bash、sh、csh、ksh等，习惯�
 打开文本编辑器，新建一个文件`test.sh`，扩展名为`.sh`（sh代表shell）。
 
 输入一些代码：
-```
+```bash
 #!/bin/bash
 echo "Hello World !"
 ```
 
 在命令行运行：
-```
+```bash
 chmod +x test.sh
 ./test.sh
 ```
 
 运行结果：
-```
+```bash
 Hello World !
 ```
 
@@ -32,7 +32,7 @@ Hello World !
 
 ## 注释
 以`#`开头的行就是注释，会被解释器忽略。sh里没有多行注释，只能每一行加一个#号。
-```
+```bash
 # --------
 # 这是注释块
 # --------
@@ -41,7 +41,7 @@ Hello World !
 ## 打印输出
 
 **echo**： 是Shell的一个内部指令，用于在屏幕上打印出指定的字符串。
-```
+```bash
 echo arg 
 echo -e arg #执行arg里的转义字符。echo加了-e默认会换行
 echo arg > myfile #显示结果重定向至文件，会生成myfile文件
@@ -52,7 +52,7 @@ echo arg > myfile #显示结果重定向至文件，会生成myfile文件
 `printf` 命令用于格式化输出， 是`echo`命令的增强版。它是C语言`printf()`库函数的一个有限的变形，并且在语法上有些不同。
 
 如同 `echo` 命令，`printf` 命令也可以输出简单的字符串:
-```
+```bash
 printf "hello\n"
 ```
 `printf` 不像 `echo` 那样会自动换行，必须显式添加换行符(\n)。
@@ -61,7 +61,7 @@ printf "hello\n"
 
 
 printf 命令的语法：
-```
+```bash
 printf  format-string  [arguments...]
 
 #format-string 为格式控制字符串，arguments 为参数列表。功能和用法与c语言的 printf 命令类似。
@@ -74,7 +74,7 @@ printf  format-string  [arguments...]
 * 参数比格式控制符(%)多时，格式控制符可以重用，可以将所有参数都转换。
 * arguments 使用空格分隔，不用逗号。
 
-```
+```bash
 # 双引号
 printf "%d %s\n" 10 "abc"
 10 abc
@@ -111,7 +111,7 @@ $
 ```
 
 **read**： 命令行从输入设备读入内容
-```
+```bash
 #!/bin/bash
 
 # Author : lalal
@@ -122,7 +122,7 @@ echo "Hello, $NAME"
 ```
 
 运行脚本：
-```
+```bash
 chmod +x test.sh
 ./test.sh
 
@@ -137,7 +137,7 @@ Hello, lalal
 Shell支持自定义变量。
 ### 定义变量
 定义变量时，变量名不加美元符号（$），如：
-```
+```bash
 variableName="value"
 ```
 注意，**变量名和等号之间不能有空格**，这可能和你熟悉的所有编程语言都不一样。有空格会出错。
@@ -149,7 +149,7 @@ variableName="value"
 * 不能使用bash里的关键字（可用help命令查看保留关键字）。
 
 变量定义举例：
-```
+```bash
 myUrl="lalal"
 myNum=100
 ```
@@ -159,13 +159,13 @@ myNum=100
 ### 使用变量
 
 使用一个定义过的变量，只要在变量名前面加美元符号（$）即可，如：
-```
+```bash
 your_name="lalal"
 echo $your_name
 echo ${your_name}
 ```
 **变量名外面的花括号是可选的**，加不加都行，加花括号是为了帮助解释器识别变量的边界，比如下面这种情况：
-```
+```bash
 for skill in C PHP Python Java 
 do
     echo "I am good at ${skill}Script"
@@ -178,14 +178,14 @@ done
 >已定义的变量，可以被重新定义。
 
 在变量前面加`readonly` 命令可以将变量定义为只读变量，只读变量的值不能被改变。
-```
+```bash
 url="http://www.baidu.com"
 readonly url
 url="http://www.baidu.com"
 ```
 
 使用 `unset` 命令可以删除变量。语法：
-```
+```bash
 unset variable_name
 ```
 变量被删除后不能再次使用；unset 命令不能删除只读变量。
@@ -215,7 +215,7 @@ shell变量是由shell程序设置的特殊变量。shell变量中有一部分�
 |`$$`	|当前Shell进程ID。对于 Shell 脚本，就是这些脚本所在的进程ID。|
 
 示例：
-```
+```bash
 #!/bin/bash
 echo "File Name: $0"
 echo "First Parameter : $1"
@@ -226,7 +226,7 @@ echo "Total Number of Parameters : $#"
 ```
 
 运行结果：
-```
+```bash
 $./test.sh Zara Ali
 File Name : ./test.sh
 First Parameter : Zara
@@ -242,7 +242,7 @@ Total Number of Parameters : 2
 但是当它们被双引号(" ")包含时，"`$*`" 会将所有的参数作为一个整体，以"`$1 $2 … $n`"的形式输出所有参数；"`$@`" 会将各个参数分开，以`"$1" "$2" … "$n"` 的形式输出所有参数。
 
 示例：
-```
+```bash
 #!/bin/bash
 echo "\$*=" $*
 echo "\"\$*\"=" "$*"
@@ -271,7 +271,7 @@ done
 ```
 
 执行 `./test.sh "a" "b" "c" "d"`，看到下面的结果：
-```
+```bash
 $*=  a b c d
 "$*"= a b c d
 $@=  a b c d
@@ -300,7 +300,7 @@ d
 `$?` 可以获取上一个命令的退出状态。所谓退出状态，就是上一个命令执行后的返回结果。
 
 示例：
-```
+```bash
 if [[ $? != 0 ]];then
   echo "error"
   exit 1;
@@ -313,7 +313,7 @@ fi
 
 ## 转义字符
 
-```
+```bash
 转义字符	含义
 \\	反斜杠
 \a	警报，响铃
@@ -328,18 +328,18 @@ fi
 **shell默认是不转义上面的字符的。需要加`-e`选项。**
 
 举个例子：
-```
+```bash
 #!/bin/bash
 a=11
 echo -e "a is $a \n"
 ```
 
 运行结果：
-```
+```bash
 a is 11
 ```
 这里 `-e` 表示对转义字符进行替换。如果不使用 `-e` 选项，将会原样输出：
-```
+```bash
 a is 11\n
 ```
 
@@ -350,13 +350,13 @@ a is 11\n
 命令替换是指Shell可以先执行命令，将输出结果暂时保存，在适当的地方输出。
 
 语法：
-```
+```bash
 `command`
 ```
 **注意是反引号，不是单引号，这个键位于 Esc 键下方。**
 
 下面的例子中，将命令执行结果保存在变量中：
-```
+```bash
 #!/bin/bash
 DATE=`date`
 echo "Date is $DATE"
@@ -382,7 +382,7 @@ echo "Date is $DATE"
 下面的脚本用于php安装过程中安装zip扩展。
 
 `php_zip_ins.sh`
-```
+```bash
 #!/bin/bash
 #zip install
 
