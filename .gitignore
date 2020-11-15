@@ -1,0 +1,9 @@
+.idea
+dist
+chapters.yml
+.DS_Store
+node_modules
+_book
+*.epub
+*.pdf
+book.epub

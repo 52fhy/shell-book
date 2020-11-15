@@ -1,1 +1,8 @@
-[]
+- README.md: shell-book
+- SUMMARY.md: SUMMARY.md
+- chapter1.md: 01- Shell脚本学习--入门
+- chapter2.md: 02- Shell脚本学习--运算符
+- chapter3.md: 03- Shell脚本学习--字符串和数组
+- chapter4.md: 04- Shell脚本学习--条件控制
+- chapter5.md: 05- Shell脚本学习--函数
+- chapter6.md: 06- Shell脚本学习--其它

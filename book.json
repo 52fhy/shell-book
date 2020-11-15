@@ -1,0 +1,7 @@
+{
+	"title" : "Shell脚本学习",
+	"theme-default": {
+		"showLevel": true
+	},
+	"plugins": ["theme-comscore","anchor-navigation-ex"]
+}

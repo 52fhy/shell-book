@@ -1,0 +1,8 @@
+dir: ./
+output: dist
+site: shell-book
+theme: oceandeep
+customization: false
+themeDir: loppo-theme
+direction: ltr
+id: shell-book
