@@ -21,14 +21,14 @@ function function_name () {
 #!/bin/bash
 
 hello(){
-	echo 'hello';
+	echo 'hello world';
 }
 
 hello
 ```
 运行结果：
 ```
-hello
+hello world
 ```
 
 调用函数只需要给出函数名，不需要加括号。
@@ -41,7 +41,7 @@ Shell 函数返回值只能是整数，一般用来表示函数执行成功与�
 #!/bin/bash
 
 function hello(){
-	return 'hello';
+	return 'hello world';
 }
 
 hello
@@ -56,17 +56,19 @@ line 4: return: hello: numeric argument required
 #!/bin/bash
 
 function hello(){
-	return 'hello';
+	echo "hello world";
 }
 
-str=hello
+str=$(hello)
 
+echo $str
 echo $str
 ```
 
 运行结果：
 ```
-hello
+hello world
+hello world
 ```
 
 像删除变量一样，删除函数也可以使用 `unset` 命令，不过要加上 `.f` 选项，如下所示：
